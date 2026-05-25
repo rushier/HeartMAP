@@ -1,0 +1,99 @@
+train:
+  epochs: 60
+  batch_size: 4
+  mode: lge
+  seed: 497
+  visualize: True
+
+  wandb_run_name: <wandb_run_name>
+  wandb_mode: online
+  wandb_log_steps: 1000
+  wandb_group_name: <wandb_group_name>
+  wandb_entity: <wandb_user>
+  use_wandb: False
+
+  optimizer:
+    lr: 0.00001
+    weight_decay: 0.00001
+    add_on_layers_lr: 0.002
+    prototype_vectors_lr: 0.002
+    last_layer_lr: 0.000001
+
+  scheduler:
+    patience: 50
+    threshold: 0.01
+    min_lr: 0.0000001
+
+  criterion:
+    attn_lambda: 0.0
+    frame_lambda: 0.0
+    classification_lambda: 0.0
+    criterion_mode: weighted_bce
+    seg_classes: 3
+
+  evaluator:
+    standards: ["auc", "f1", "acc"]
+    eval_metric: auc
+    maximize: True
+
+model:
+  checkpoint_path: ./checkpoints/checkpoint_best_loss.pth
+  backbone_name: EchoPrime
+  fuse_mode: prior_GNN
+  loc: True
+
+  patches: [16, 16]
+  spatial_num_layers: 12
+  spatial_mlp_dim: 3072
+  spatial_num_heads: 12
+  spatial_aggr_method: cls
+  spatial_hidden_size: 768
+  spatial_dropout_rate: 0.2
+  pretrained_patch_encoder_path:
+
+  temporal_num_layers: 2
+  temporal_mlp_dim: 128
+  temporal_num_heads: 4
+  temporal_aggr_method: mean
+  temporal_dropout_rate: 0.2
+  temporal_hidden_size: 512
+
+  vid_num_layers: 2
+  vid_mlp_dim: 256
+  vid_num_heads: 4
+  vid_aggr_method: mean
+  vid_dropout_rate: 0.2
+  vid_hidden_size: 128
+  vid_seq_len: 6
+
+  output_dropout_rate: 0.2
+  use_ppnet: False
+  frame_size: 224
+
+data:
+  name: huaxi
+  dataset_path: ./csv_files/input_LGE_mri_ecg_value.csv
+  frame_size: 224
+  max_frames: 64
+  n_sampled_frames: 16
+  max_clips: 16
+  mean: 0.12922
+  std: 0.19023
+  seed: 497
+  length: 16
+  size: 224
+  chamber_list: a4c+a3c+a2c+mid+mv
+  add_mask: True
+  add_flow: False
+  add_ecg: True
+  random_crop: True
+  downsampling_factor: 5
+  beat_based_attention_mask: False
+
+  lge_value: True
+  lge_cls: True
+  perfusion: False
+  add_seg: False
+  seg_classes: 3
+
+  frozen: False

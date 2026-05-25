@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Model checkpoints (large files)
+*.pth
+checkpoints/
+logs/
+
+# Data files
+*.csv
+*.xlsx
+*.npz
+*.npy
+*.nii.gz
+data/
+
+# Pretrained models
+models/pretrained/*.pt
+
+# IDE
+.vscode/
+.idea/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Wandb
+wandb/
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Keep directory structure
+!checkpoints/.gitkeep
+!data/.gitkeep
+!models/pretrained/.gitkeep
+!csv_files/external/.gitkeep
