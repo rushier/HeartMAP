@@ -26,9 +26,7 @@ HeartMAP/
 ├── checkpoints/                    # Trained model checkpoints
 ├── data/                           # Processed data directory
 ├── src/
-│   ├── engine_joint.py             # Main training/testing engine for joint model
-│   ├── engine.py                   # Training engine (legacy)
-│   ├── engine_ecg.py               # ECG-only training engine
+│   ├── engine_joint.py             # Main training/testing engine
 │   ├── builders/
 │   │   ├── model_builder.py        # Model construction
 │   │   ├── data_builder.py         # DataLoader construction
@@ -38,33 +36,22 @@ HeartMAP/
 │   │   ├── transform_builder.py    # Data augmentation transforms
 │   │   ├── evaluator_builder.py    # Evaluation metrics
 │   │   ├── meter_builder.py        # Loss tracking meters
-│   │   └── generator.py            # Backbone network definitions
+│   │   └── generator.py            # EchoPrime backbone (MViT v2)
 │   ├── core/
-│   │   ├── model.py                # Base ViViT model
-│   │   ├── model_ECG.py            # ViViT with ECG fusion
-│   │   ├── model_backbone.py       # ViViT with external backbone
-│   │   ├── model_ECG_backbone.py   # ViViT+ECG with external backbone
-│   │   ├── model_LgeValue_ECG.py            # LGE value prediction model
-│   │   ├── model_LgeValue_ECG_backbone.py   # LGE value model with backbone
-│   │   ├── model_LgeValue_ECG_backbone_seg.py  # LGE value + segmentation
-│   │   ├── model_lge_seg.py                 # LGE segmentation model
-│   │   ├── model_single_ECG.py              # ECG-only model
-│   │   ├── data.py                # Dataset classes
-│   │   ├── data_ori.py            # Original dataset (backup)
-│   │   ├── criterion.py           # Loss functions
-│   │   ├── evaluators.py          # Evaluation metrics (AUC, F1, etc.)
-│   │   ├── meters.py              # Average meters for loss tracking
-│   │   ├── transformer.py         # Transformer encoder/decoder
-│   │   ├── fine_grained_lge_value.py       # Fine-grained LGE value module
-│   │   ├── fine_grained_lge_value_new.py   # Updated LGE value module
-│   │   └── vit/                   # Vision Transformer implementation
+│   │   ├── model_ECG_backbone.py   # ViViT + ECG fusion with EchoPrime backbone
+│   │   ├── data.py                 # Dataset classes
+│   │   ├── criterion.py            # Loss functions
+│   │   ├── evaluators.py           # Evaluation metrics (AUC, F1, etc.)
+│   │   ├── meters.py               # Average meters for loss tracking
+│   │   ├── transformer.py          # Transformer encoder/decoder
+│   │   ├── fine_grained_lge_value.py  # Prior-GNN for segmental LGE allocation
+│   │   └── vit/                    # Vision Transformer implementation
 │   │       ├── vit.py
 │   │       ├── vit_configs.py
 │   │       └── vit_utils.py
 │   └── utils/
-│       ├── misc.py                # Miscellaneous utilities
-│       ├── vis.py                 # Visualization utilities
-│       └── proto_vis.py           # Prototype visualization
+│       ├── misc.py                 # Miscellaneous utilities
+│       └── vis.py                  # Visualization utilities
 ```
 
 ## Data Preparation
