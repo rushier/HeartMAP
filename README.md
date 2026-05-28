@@ -1,6 +1,6 @@
-# HeartMAP: Multi-Modal Heart Failure Assessment with Myocardial Late Gadolinium Enhancement Prediction
+# HeartMAP: Hierarchical estimation of myocardial fibrosis from routine echocardiography and electrocardiography in children
 
-HeartMAP is a deep learning framework for predicting myocardial Late Gadolinium Enhancement (LGE) from multi-modal cardiac data including echocardiography videos and electrocardiogram (ECG) signals. The model leverages a Space-Time Factorized Vision Transformer (ViViT) architecture with ECG integration via HuBERT-ECG, and a Graph Neural Network (GNN) module for segmental allocation.
+HeartMAP is a deep learning framework for predicting myocardial Late Gadolinium Enhancement (LGE) from multi-modal cardiac data including echocardiography videos and electrocardiogram (ECG) signals. The model enables anatomically constrained global and segmental estimation, supports continuous quantification, and remains robust under incomplete examinations. HeartMAP identified global LGE with high accuracy, outperformed existing benchmarks, and achieved quantitative agreement with CMR-defined fibrosis burden.
 
 ## Key Features
 
@@ -82,9 +82,9 @@ Create a CSV file at `csv_files/input_LGE_mri_ecg_value.csv` with the following 
 ### Data Split CSVs
 
 Place train/val/test split CSVs in `csv_files/`:
-- `train_LGE_{seed}_relabel.csv`
-- `val_LGE_{seed}_relabel.csv`
-- `test_LGE_{seed}_relabel.csv`
+- `train_LGE_relabel.csv`
+- `val_LGE_relabel.csv`
+- `test_LGE_relabel.csv`
 
 Each split CSV should have matching `PID` and `Echodate` columns to identify patients.
 
@@ -96,8 +96,6 @@ Download the following pretrained weights and place them in `models/pretrained/`
 |------|-------------|--------|
 | `echo_prime_encoder.pt` | EchoPrime MViT v2 encoder | [EchoPrime](https://github.com/echoprime/EchoPrime) |
 | `hubert_ecg_small.pt` | HuBERT-ECG pretrained model | [HuBERT-ECG](https://github.com/bakergilab/HuBERT-ECG) |
-| `spacetime_unet_apical.pt` | SpaceTime UNet for apical views | (pretrained on echo segmentation) |
-| `spacetime_unet_short.pt` | SpaceTime UNet for short-axis views | (pretrained on echo segmentation) |
 
 ### External Dependencies
 
