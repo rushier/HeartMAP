@@ -193,11 +193,11 @@ HeartMAP employs a multi-modal fusion architecture:
 If you use HeartMAP in your research, please cite:
 
 ```bibtex
-@article{heartmap2024,
+@article{heartmap2026,
   title={HeartMAP: Multi-Modal Heart Failure Assessment with Myocardial Late Gadolinium Enhancement Prediction},
   author={...},
   journal={...},
-  year={2024}
+  year={2026}
 }
 ```
 
